@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Book Store</title>
+</head>
+<body>
+    <div class="getdata" id="getdata"></div>
+    <script>
+//         const key='bjkNSYe1RndFzKefwCSWp7YqOYcvSkgM'
+// fetch(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${key}`)
+// .then(res=>res.json())
+// .then(data=>{
+//    //console.log(data)
+//    data.results.books.map((book)=>{
+//     let image=book.book_image
+//     let title=book.title
+//     fetch('https://655250c85c69a7790329e13e.mockapi.io/signin/books',{
+//         method:"POST",
+//         body: JSON.stringify({
+//             image,
+//             title
+//         }),
+//         headers:{'Content-type' :'application/json; chareset=UTF-8'},
+//     })
+//     .then(response => response.json())
+//     .then((data)=>console.log(data))
+//    })
+// })
+fetch(`https://655250c85c69a7790329e13e.mockapi.io/signin/books`)
+.then(res=>res.json())
+.then(data=>{
+   //console.log(data)
+    for(let i=0; i<data.length;i++){
+        let getdata=document.getElementById("getdata")
+        let c=document.createElement('div')
+        c.className='c'
+        c.innerHTML=
+        `
+        <img src="${data[i].image}">
+        <h4>${data[i].title}</h4>
+        <button> Delet </button>
+        `
+        getdata.appendChild(c)
+
+    }
+    
+})
+    </script>
+</body>
+</html>
