@@ -3,11 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Book Store</title>
+         <style>
+        body{
+            background-image: url('https://cp.slaati.com/wp-content/uploads/2023/07/Fz9IK4bXsAABOT2.jpeg') ;
+            background-repeat:no-repeat;
+            display: flex;
+            justify-content: center;
+            margin-top: 15%;
+            width: 100%;
+        }
+        .container{
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column;
+            margin: 5px; 
+            padding: 5px;
+            border: 1px solid black;
+            background-color: rgba(240, 248, 255, 0.68);
+            width: 50%;
+            height: 50%;
+        }
+        #Up{
+            width: 100%;
+            background-color: rgba(165, 42, 42, 0.6);
+            border: none;
+        }
+    </style>
+    <title>Book store</title>
 </head>
 <body>
-    <div class="getdata" id="getdata"></div>
-    <script src="main.js"></script>
+    <div class="container">
+        <h1 style="color:rgba(165, 42, 42, 0.817);">Welcom To Signup Page</h1>
+        <input type="text" placeholder="Full Name" id="inputname">
+        <p id="pname" style="color: tomato;"></p>
+        <input type="text" placeholder="Enter Email"id="inputemail">
+        <p id="pemail" style="color: tomato;"></p>
+        <input type="password" placeholder="Enter Password"id="inputpassword">
+        <p id="ppass" style="color: tomato;"></p>
+        <div class="clearfix">
+          <button type="submit" id="Up">SignUp</button>
+          <p>Do You Have account ? <a href="login.html" style="color: brown;">LogIn</a></p>
+        </div>
+      </div>
+      <script>
+         let inputname=document.getElementById("inputname")
+         let inputemail=document.getElementById("inputemail")
+         let inputpassword=document.getElementById("inputpassword")
+         let pname=document.getElementById("pname")
+         let pemail=document.getElementById("pemail")
+         let ppass=document.getElementById("ppass")
+         let btn=document.getElementById("Up")
+         const emailcheck= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             btn.addEventListener("click",function apifun(){
+                let email=inputemail.value 
+                let password=inputpassword.value
+                let name=inputname.value
+                if(name.trim().length<5){
+                    pname.innerText="Name must be less than 4 characters long!"
+                }
+                if(!emailcheck.test(email)){
+                    pemail.innerText="Email it is not correct"
+                }
+                if(password.trim().length<8){
+                    ppass.innerText="Password less than 8 number"
+                }
+                else{
+            fetch("https://655250c85c69a7790329e13e.mockapi.io/signin/signin", {
+                method: 'POST',
+                body: JSON.stringify({
+                name,
+                email,
+                password
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+                .then((response) => response.json())
+                .then((json) =>{
+                    //console.log(json), 
+                    (window.location.href = 'logIn.html');
+                })};
+
+        })
+      </script>
 </body>
 </html>
