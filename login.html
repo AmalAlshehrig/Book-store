@@ -50,16 +50,17 @@
         btn.addEventListener('click',()=>{
             let namee=inputname.value;
             let passwordd=inputpassword.value;
+            let AD='Adimen'
             fetch('https://655250c85c69a7790329e13e.mockapi.io/signin/signin',{method:'get'})
             .then((res)=>res.json())
             .then((json)=>{
                 console.log(json);
                 for(let i=0;i<json.length;i++){
-                    if(passwordd == json[i].password && namee != 'Adimen'){
-                        (window.location.href='users.html');
-                    }
-                    else if(passwordd == json[i].password && namee == 'Adiman'){
+                    if(namee == AD){
                         (window.location.href='Adiman.html');
+                    }
+                    else if(passwordd == json[i].password && namee != AD){
+                        (window.location.href='users.html');
                     }
                 }
             })
